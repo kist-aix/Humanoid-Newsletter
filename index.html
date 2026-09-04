@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="국가AI+S&T정책연구센터가 과기정통부 과학기술인공지능혁신과에 보내는 휴머노이드·피지컬 AI 일간 동향. 확인된 사실과 원문만 싣습니다.">
+<meta property="og:site_name" content="국가AI+S&T정책연구센터">
+<meta property="og:title" content="휴머노이드 데일리">
+<meta property="og:description" content="휴머노이드·피지컬 AI 일간 동향 · 확인된 사실과 원문 링크만. 국가AI+S&T정책연구센터.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Humanoid Daily 2026-09-03</title>
+<!-- 자립형 배포본 · 2026-09-03 16:26 생성 · 더블클릭하면 열립니다 -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* ══════════════════════════════════════════════════════════════
+   디자인 토큰 — 세 상태를 모두 정의한다.
+   :root 에 완전한 라이트 팔레트, 미디어 쿼리와 [data-theme]에서 재정의.
+   미디어 쿼리 안에서만 정의되는 색이 하나라도 있으면,
+   시스템 기본(스탬프 없음) 상태에서 그 색이 사라져 글자가 배경에 묻힌다.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#EDF0EE; --surface:#FBFCFB; --surface2:#F1F4F2; --panel:#16211D;
+  --ink:#131C19; --ink2:#2C3A35; --muted:#5A6A63; --line:#D2DAD5; --line2:#E3E9E5;
+  --accent:#0D6A56; --accent-soft:#DCEBE5; --gov:#2A4B7C; --gov-soft:#DFE7F2;
+  --warn:#95441A; --warn-soft:#F2E3D8; --panel-ink:#DCE7E2; --panel-dim:#7E948C;
+  --ok:#0D6A56; --ok-soft:#DCEBE5; --crit:#8E2F2F; --crit-soft:#F4DFDF;
+  --pw-ink:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1211; --surface:#141C19; --surface2:#1A2421; --panel:#0A100E;
+    --ink:#E4EBE7; --ink2:#C3D0CA; --muted:#8FA098; --line:#26332F; --line2:#1E2A26;
+    --accent:#4CC5A2; --accent-soft:#12302A; --gov:#84AADE; --gov-soft:#16233A;
+    --warn:#DE9364; --warn-soft:#2E2019; --panel-ink:#D5E2DC; --panel-dim:#71877F;
+    --ok:#4CC5A2; --ok-soft:#12302A; --crit:#E08585; --crit-soft:#331B1B;
+    --pw-ink:#0D1211;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1211; --surface:#141C19; --surface2:#1A2421; --panel:#0A100E;
+  --ink:#E4EBE7; --ink2:#C3D0CA; --muted:#8FA098; --line:#26332F; --line2:#1E2A26;
+  --accent:#4CC5A2; --accent-soft:#12302A; --gov:#84AADE; --gov-soft:#16233A;
+  --warn:#DE9364; --warn-soft:#2E2019; --panel-ink:#D5E2DC; --panel-dim:#71877F;
+  --ok:#4CC5A2; --ok-soft:#12302A; --crit:#E08585; --crit-soft:#331B1B;
+  --pw-ink:#0D1211;
+}
+
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Noto Sans KR',system-ui,-apple-system,'Malgun Gothic',sans-serif;
+  font-size:14.5px; line-height:1.72; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Gowun Batang','Noto Serif KR',Georgia,serif; margin:0; text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+img{max-width:100%}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px 90px}
+
+/* ── 머리 ── */
+.top{padding:30px 0 0; display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start}
+.top .grow{flex:1 1 300px}
+.eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); font-weight:600}
+h1{font-size:clamp(24px,4.4vw,36px); font-weight:700; margin-top:10px; line-height:1.2}
+.subline{color:var(--muted); font-size:13px; margin-top:9px;
+  font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums}
+
+/* 내부면 표식. 화면 캡처가 밖으로 나갔을 때 구분되어야 하므로 숨기거나 접지 않는다. */
+.internal-badge{
+  display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  letter-spacing:.1em; padding:3px 9px; border-radius:2px;
+  background:var(--warn-soft); border:1px solid var(--warn); color:var(--warn);
+}
+.themetog{
+  appearance:none; border:1px solid var(--line); background:var(--surface); color:var(--muted);
+  font-family:'IBM Plex Mono',monospace; font-size:11px; padding:4px 10px; border-radius:2px;
+  cursor:pointer;
+}
+.themetog:hover{color:var(--ink); border-color:var(--ink)}
+.themetog:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ── 내비 ── */
+nav.tabs{display:flex; gap:0; margin-top:24px; border-bottom:2px solid var(--ink); overflow-x:auto}
+nav.tabs a, nav.tabs button{
+  appearance:none; text-decoration:none; display:block;
+  border:1px solid var(--line); border-bottom:none; background:var(--surface2);
+  color:var(--muted); font-family:'Noto Sans KR',sans-serif; font-size:13.5px; font-weight:500;
+  padding:9px 15px; cursor:pointer; white-space:nowrap; margin-right:-1px; border-radius:2px 2px 0 0;
+}
+nav.tabs .n{font-family:'IBM Plex Mono',monospace; font-size:11px; margin-right:7px; opacity:.75}
+nav.tabs a:hover, nav.tabs button:hover{background:var(--surface); color:var(--ink)}
+nav.tabs a[aria-current="page"], nav.tabs button[aria-selected="true"]{
+  background:var(--ink); color:var(--bg); border-color:var(--ink); font-weight:700}
+nav.tabs a:focus-visible, nav.tabs button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+.pane{padding:30px 0 0}
+.pane[hidden]{display:none}
+
+h2{font-size:21px; font-weight:700; margin:34px 0 6px}
+h2:first-child{margin-top:0}
+h3{font-size:15.5px; font-weight:700; margin:24px 0 10px}
+.dek{color:var(--muted); font-size:13.5px; margin-bottom:16px; max-width:72ch}
+
+/* ── 표 ── */
+.scroll{overflow-x:auto; border:1px solid var(--line); background:var(--surface); margin:16px 0}
+table{border-collapse:collapse; width:100%; min-width:540px; font-size:13px}
+th,td{padding:9px 11px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line2)}
+thead th{background:var(--surface2); font-family:'IBM Plex Mono',monospace; font-weight:600;
+  font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+  border-bottom:1px solid var(--line); white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.n{font-variant-numeric:tabular-nums; font-family:'IBM Plex Mono',monospace; white-space:nowrap}
+
+/* ── 칩·등급 ── */
+.chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+  padding:2px 6px; border-radius:2px; border:1px solid var(--line); background:var(--surface2);
+  color:var(--ink2); margin:1px 2px 1px 0; white-space:nowrap}
+.chip.a{background:var(--accent-soft); border-color:var(--accent); color:var(--accent)}
+.chip.b{background:var(--gov-soft); border-color:var(--gov); color:var(--gov)}
+.chip.c{background:var(--warn-soft); border-color:var(--warn); color:var(--warn)}
+.sig{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+  font-weight:600; padding:2px 6px; border-radius:2px; white-space:nowrap}
+.sig.s1{background:var(--ok-soft); color:var(--ok); border:1px solid var(--ok)}
+.sig.s2{background:var(--gov-soft); color:var(--gov); border:1px solid var(--gov)}
+.sig.s3{background:var(--surface2); color:var(--muted); border:1px solid var(--line)}
+.sig.s4{background:var(--warn-soft); color:var(--warn); border:1px solid var(--warn)}
+
+/* ── 도구막대·버튼 ── */
+.toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:16px 0;
+  padding:12px 14px; background:var(--surface); border:1px solid var(--line)}
+.toolbar .count{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.toolbar .count b{color:var(--accent); font-size:15px}
+button.act, a.act{
+  appearance:none; text-decoration:none; display:inline-block;
+  border:1px solid var(--ink); background:var(--ink); color:var(--bg);
+  font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:600; padding:7px 14px;
+  border-radius:2px; cursor:pointer;
+}
+button.act.ghost, a.act.ghost{background:transparent; color:var(--ink)}
+button.act:hover, a.act:hover{opacity:.86}
+button.act:focus-visible, a.act:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+select, input[type=search], input[type=text]{
+  font-family:'Noto Sans KR',sans-serif; font-size:13px; padding:6px 9px;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:2px;
+}
+select:focus-visible, input:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+
+/* ── 후보풀 ── */
+table.pool td{vertical-align:middle}
+table.pool tr.on{background:var(--accent-soft)}
+table.pool input[type=checkbox]{width:16px; height:16px; accent-color:var(--accent); cursor:pointer}
+.sc{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; font-size:12px}
+.sc b{font-size:13.5px; color:var(--accent)}
+.ttl{font-weight:500; line-height:1.5}
+.src{font-size:11.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace}
+.pw{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600;
+  padding:1px 5px; border-radius:2px; background:var(--gov); color:var(--pw-ink);
+  margin-right:5px; vertical-align:1px}
+
+/* ── 발송본 패널 ── */
+.out{background:var(--panel); color:var(--panel-ink); padding:20px 18px; margin-top:14px;
+  overflow-x:auto; border-radius:2px}
+.out pre{margin:0; font-family:'IBM Plex Mono','D2Coding',monospace; font-size:12px;
+  line-height:1.9; white-space:pre-wrap; word-break:break-word}
+
+/* ── 노트 ── */
+.note{background:var(--surface); border-left:3px solid var(--accent); padding:14px 16px;
+  margin:16px 0; font-size:13.5px; color:var(--ink2)}
+.note.warn{border-left-color:var(--warn)}
+.note .lbl{display:block; font-family:'IBM Plex Mono',monospace; font-size:10px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600;
+  margin-bottom:5px}
+.note.warn .lbl{color:var(--warn)}
+
+/* ── REF 카드 ── */
+.refs{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:12px; margin-top:14px}
+.ref{border:1px solid var(--line); background:var(--surface); padding:13px 14px}
+.ref .rid{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted); letter-spacing:.06em}
+.ref .rt{font-weight:700; font-size:14px; margin:5px 0 6px; line-height:1.45}
+.ref .rm{font-size:12.5px; color:var(--muted); margin-bottom:8px}
+.ref .rk{font-size:12.5px; color:var(--ink2); margin-top:8px; padding-top:8px;
+  border-top:1px dashed var(--line)}
+.filters{display:flex; flex-wrap:wrap; gap:6px; margin:14px 0}
+.filters button{appearance:none; font-family:'IBM Plex Mono',monospace; font-size:11.5px;
+  padding:4px 9px; border:1px solid var(--line); background:var(--surface); color:var(--muted);
+  cursor:pointer; border-radius:2px}
+.filters button[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.filters button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ── 스레드 ── */
+.thread{border:1px solid var(--line); background:var(--surface); padding:15px 16px; margin-bottom:12px}
+.thread .tn{font-weight:700; font-size:15px; font-family:'Gowun Batang',serif}
+.tl{list-style:none; margin:12px 0 0; padding:0 0 0 16px; border-left:2px solid var(--line)}
+.tl li{position:relative; padding:0 0 10px 14px; font-size:13px}
+.tl li::before{content:''; position:absolute; left:-21px; top:8px; width:7px; height:7px;
+  border-radius:50%; background:var(--accent); border:2px solid var(--surface)}
+.tl .d{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-right:8px}
+.verdict{margin-top:12px; padding:10px 12px; background:var(--surface2);
+  border-left:3px solid var(--gov); font-size:13px}
+.verdict b{color:var(--gov)}
+
+/* ── 이슈 ── */
+.iss{border:1px solid var(--line); background:var(--surface); margin-bottom:14px}
+.ih{padding:13px 16px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap;
+  gap:10px; align-items:baseline}
+.ih .rule{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  padding:2px 7px; background:var(--ink); color:var(--bg); border-radius:2px}
+.ih .it{font-weight:700; font-size:15px; font-family:'Gowun Batang',serif; flex:1 1 240px}
+.ib{padding:14px 16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px}
+.lbl2{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:5px}
+.toc{font-size:13px; margin:0; padding-left:17px}
+.toc li{margin-bottom:3px}
+.vfy{font-size:12.5px}
+.vf{display:block; margin-bottom:4px}
+.ok-i{color:var(--ok); font-weight:600}
+.wn-i{color:var(--warn); font-weight:600}
+.cr-i{color:var(--crit); font-weight:600}
+
+/* ── D-day ── */
+.dd{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  padding:2px 7px; border-radius:2px; background:var(--surface2); border:1px solid var(--line);
+  color:var(--muted)}
+.dd.near{background:var(--crit-soft); border-color:var(--crit); color:var(--crit)}
+.dd.mid{background:var(--warn-soft); border-color:var(--warn); color:var(--warn)}
+
+/* ── 파이프라인 ── */
+.pipe{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1px;
+  background:var(--line); border:1px solid var(--line); margin-top:14px}
+.col{background:var(--surface); padding:12px 13px; min-height:130px}
+.colh{display:flex; align-items:baseline; gap:8px; margin-bottom:10px; padding-bottom:8px;
+  border-bottom:1px solid var(--line2)}
+.colh .cn{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); font-weight:600}
+.colh .cc{font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600;
+  color:var(--accent); margin-left:auto; font-variant-numeric:tabular-nums}
+.card{background:var(--surface2); border:1px solid var(--line); padding:8px 10px;
+  margin-bottom:7px; font-size:12.5px; line-height:1.5}
+.card .cid{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted)}
+.card.done{border-left:3px solid var(--ok)}
+.empty{font-size:12.5px; color:var(--muted); padding:6px 0}
+
+/* ── 리포트 ── */
+.rep{border:1px solid var(--line); background:var(--surface); margin-bottom:14px}
+.reph{padding:13px 16px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap;
+  gap:10px; align-items:baseline}
+.reph .no{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+  padding:2px 7px; background:var(--accent); color:var(--surface); border-radius:2px}
+.reph .rtt{font-weight:700; font-size:15.5px; font-family:'Gowun Batang',serif; flex:1 1 240px}
+.repb{padding:14px 16px}
+.sum{background:var(--surface2); border-left:3px solid var(--accent); padding:11px 13px;
+  margin-bottom:12px; font-size:13px}
+.sum span{display:block; margin-bottom:5px}
+.sum span:last-child{margin-bottom:0}
+.repmeta{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; font-size:12.5px}
+.stg{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600;
+  padding:2px 7px; border-radius:2px; border:1px solid var(--line); background:var(--surface2);
+  color:var(--muted)}
+.stg.wait{background:var(--warn-soft); border-color:var(--warn); color:var(--warn)}
+.stg.go{background:var(--gov-soft); border-color:var(--gov); color:var(--gov)}
+.stg.pub{background:var(--ok-soft); border-color:var(--ok); color:var(--ok)}
+
+/* ── 아카이브 목록 ── */
+.edlist{display:grid; gap:10px; margin-top:14px}
+.edrow{display:flex; flex-wrap:wrap; gap:12px; align-items:baseline; padding:12px 14px;
+  border:1px solid var(--line); background:var(--surface); text-decoration:none; color:inherit}
+.edrow:hover{border-color:var(--accent)}
+.edrow .ed{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--accent);
+  font-weight:600; white-space:nowrap}
+.edrow .eh{flex:1 1 260px; font-size:13.5px}
+.item{border-bottom:1px solid var(--line2); padding:11px 0}
+.item:last-child{border-bottom:none}
+.item .isec{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted);
+  letter-spacing:.06em; text-transform:uppercase}
+.item .itx{font-size:13.5px; margin-top:3px; line-height:1.7}
+.hit{background:var(--accent-soft); border-radius:2px}
+
+ul.tight{margin:10px 0 0; padding-left:19px}
+ul.tight li{margin-bottom:6px; font-size:13.5px}
+ul.tight li::marker{color:var(--accent)}
+footer{margin-top:50px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted);
+  font-size:12px; font-family:'IBM Plex Mono',monospace}
+code{font-family:'IBM Plex Mono',monospace; font-size:.92em; background:var(--surface2);
+  padding:1px 4px; border-radius:2px}
+b{font-weight:700}
+
+@media (max-width:520px){
+  .wrap{padding:0 14px 70px}
+  nav.tabs a, nav.tabs button{padding:8px 11px; font-size:12.5px}
+}
+
+/* ── 발표일·원문 표기 ─────────────────────────────────────────
+   검색엔진이 몇 달 지난 자료를 오늘 것처럼 올려 준다. 담당자가 승인 전에
+   날짜를 눈으로 보게 하려고 항목마다 붙인다. 확인 못 한 날짜는 감추지 않는다. */
+.pd{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+  padding:1px 5px; border-radius:2px; border:1px solid var(--line);
+  background:var(--surface2); color:var(--muted); white-space:nowrap}
+.pd.warn{background:var(--warn-soft); border-color:var(--warn); color:var(--warn)}
+.src-link{font-size:10.5px; font-family:'IBM Plex Mono',monospace;
+  text-decoration:none; border-bottom:1px solid currentColor}
+.src-link:hover{border-bottom-width:2px}
+
+/* ── 워치리스트 패널 (관리용 화면 전용) ───────────────────────
+   발송본에서 뺀 뒤로 이 패널이 유일한 노출 지점이다. */
+ul.watch{list-style:none; margin:0; padding:0}
+ul.watch li{padding:8px 0; border-bottom:1px solid var(--line2);
+  font-size:13px; line-height:1.65; display:flex; gap:9px; align-items:flex-start}
+ul.watch li:last-child{border-bottom:none}
+ul.watch .dd{flex:0 0 auto}
+
+</style>
+<style>
+  /* 공유용 전용 — 결과 중심 배치. 해석·판단근거는 싣지 않는다. */
+  .fact{border-left:3px solid var(--line); padding:10px 0 10px 14px; margin:0 0 2px}
+  .fact + .fact{border-top:1px solid var(--line2)}
+  .fact .ft{font-size:14px; font-weight:600; line-height:1.55; color:var(--ink)}
+  .fact .fk{font-size:13px; line-height:1.75; color:var(--ink2); margin-top:5px}
+  .fact .fm{margin-top:6px; display:flex; flex-wrap:wrap; gap:7px; align-items:center}
+  /* 섹션 7개를 색으로 가른다. 번호를 세지 않고도 어느 갈래인지 눈에 들어와야 한다.
+     라이트는 어두운 색, 다크는 밝은 색 — 세 테마 상태를 모두 정의한다. */
+  :root{
+    --s1:#2A4B7C; --s2:#0D6A56; --s3:#5B3E8E; --s4:#16607A;
+    --s5:#8A5A1B; --s6:#8E3346; --s7:#4A6B22;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --s1:#8DAFE2; --s2:#4CC5A2; --s3:#B7A0E4; --s4:#74C4DF;
+      --s5:#E0AC72; --s6:#E993A7; --s7:#AFD177;
+    }
+  }
+  :root[data-theme="dark"]{
+    --s1:#8DAFE2; --s2:#4CC5A2; --s3:#B7A0E4; --s4:#74C4DF;
+    --s5:#E0AC72; --s6:#E993A7; --s7:#AFD177;
+  }
+
+  .secblk{margin:0 0 26px}
+  .secblk h3{display:flex; align-items:baseline; gap:9px; margin:0 0 4px;
+    font-size:15px; letter-spacing:-.01em;
+    border-bottom:2px solid currentColor; padding-bottom:6px}
+  .secblk[data-sec="1"] h3{color:var(--s1)}
+  .secblk[data-sec="2"] h3{color:var(--s2)}
+  .secblk[data-sec="3"] h3{color:var(--s3)}
+  .secblk[data-sec="4"] h3{color:var(--s4)}
+  .secblk[data-sec="5"] h3{color:var(--s5)}
+  .secblk[data-sec="6"] h3{color:var(--s6)}
+  .secblk[data-sec="7"] h3{color:var(--s7)}
+  /* 항목 왼쪽 선도 같은 색을 옅게 물려 받아 어느 섹션 소속인지 이어 보이게 한다 */
+  .secblk[data-sec="1"] .fact{border-left-color:var(--s1)}
+  .secblk[data-sec="2"] .fact{border-left-color:var(--s2)}
+  .secblk[data-sec="3"] .fact{border-left-color:var(--s3)}
+  .secblk[data-sec="4"] .fact{border-left-color:var(--s4)}
+  .secblk[data-sec="5"] .fact{border-left-color:var(--s5)}
+  .secblk[data-sec="6"] .fact{border-left-color:var(--s6)}
+  .secblk[data-sec="7"] .fact{border-left-color:var(--s7)}
+  details.raw{margin:22px 0 0; border:1px solid var(--line); background:var(--surface2)}
+  details.raw summary{padding:9px 12px; cursor:pointer; font-size:13px; color:var(--muted)}
+  details.raw pre{margin:0; padding:0 12px 12px; white-space:pre-wrap;
+    font-size:12.5px; line-height:1.7; color:var(--ink2)}
+  .filters{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px}
+  .filters input, .filters select{border:1px solid var(--line); background:var(--surface);
+    color:var(--ink); padding:7px 9px; font:inherit; font-size:13px; border-radius:2px}
+  mark{background:var(--accent-soft); color:var(--ink); padding:0 1px}
+  /* 머리글이 그리는 빈 내비게이션 바를 지운다 — 탭은 본문에서 만든다 */
+  .top + nav.tabs:empty{display:none}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="pane" id="body"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* 공통 유틸 + 뉴스레터 렌더. 공개면·내부면이 함께 쓴다.
+   ES 모듈이 아니다 — file:// 에서 module 은 CORS 로 막힌다. */
+window.HMD = window.HMD || {};
+
+(function (A) {
+  'use strict';
+
+  A.SECTIONS = ['해외 정책·전략', '기술·모델·데이터', '하드웨어·양산·공급망', '실증·현장도입',
+                '산업·투자·국제협력', '안전·표준·규제·노동', '국내 연구현장·기관',
+                '연구성과·논문'];
+  A.BAR = '━━━━━━━━━━━━━━━';
+  A.NONE_LINE = '▷ 금일 휴머노이드 관련 주요기사 없음';
+  A.NONE_HEAD = '금일 주요기사 없음';
+  A.PW_SECTION = 5;
+
+  A.esc = function (s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+  A.$ = function (sel, root) { return (root || document).querySelector(sel); };
+  A.$$ = function (sel, root) { return [].slice.call((root || document).querySelectorAll(sel)); };
+  A.qs = function (k) { return new URLSearchParams(location.search).get(k); };
+
+  A.fmtDate = function (iso) {
+    if (!iso) return '';
+    var p = String(iso).split('-');
+    return p.length === 3 ? p[0] + '.' + (+p[1]) + '.' + (+p[2]) : iso;
+  };
+  A.md = function (iso) {           // 2026-08-30 → 8/30
+    var p = String(iso || '').split('-');
+    return p.length === 3 ? (+p[1]) + '/' + (+p[2]) : iso;
+  };
+
+  /* 오늘 날짜(Asia/Seoul). toISOString() 은 UTC 라서 쓰면 안 된다 —
+     발송본을 조립하는 08:20 KST 는 UTC 로 아직 전날이고, 하필 매일 쓰는 그 시각에 하루가 어긋난다. */
+  A.todayKST = function () {
+    var d = new Date(Date.now() + 9 * 3600 * 1000);
+    return d.getUTCFullYear() + '-'
+      + String(d.getUTCMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getUTCDate()).padStart(2, '0');
+  };
+
+  /* 테마 토글. 세 상태를 돈다 — 시스템 → 라이트 → 다크 → 시스템.
+     localStorage 는 사생활 보호 모드에서 던지므로 반드시 감싼다. */
+  A.initTheme = function () {
+    var K = 'hmd-theme';
+    var cur = '';
+    try { cur = localStorage.getItem(K) || ''; } catch (e) { cur = ''; }
+    if (cur) document.documentElement.setAttribute('data-theme', cur);
+    var btn = A.$('#themetog');
+    if (!btn) return;
+    var label = function () {
+      var v = document.documentElement.getAttribute('data-theme') || '';
+      btn.textContent = v === 'light' ? '라이트' : v === 'dark' ? '다크' : '시스템';
+    };
+    label();
+    btn.addEventListener('click', function () {
+      var v = document.documentElement.getAttribute('data-theme') || '';
+      var next = v === '' ? 'light' : v === 'light' ? 'dark' : '';
+      if (next) document.documentElement.setAttribute('data-theme', next);
+      else document.documentElement.removeAttribute('data-theme');
+      try { next ? localStorage.setItem(K, next) : localStorage.removeItem(K); } catch (e) { /* 무시 */ }
+      label();
+    });
+  };
+
+  /* 발송본 조립. newsletter.py 와 글자 단위로 같은 결과를 내야 한다 —
+     담당자가 화면에서 보는 것과 붙여넣는 것이 다르면 화면을 믿지 않게 된다. */
+  A.buildEdition = function (date, cands, approvedIds, opens, meta) {
+    meta = meta || {};
+    var picked = cands.filter(function (c) { return approvedIds.indexOf(c.id) >= 0; });
+    picked.sort(function (a, b) {
+      return (a.sec - b.sec)
+        || ((b.pw ? 1 : 0) - (a.pw ? 1 : 0))
+        || ((b.K + b.N + b.C + b.M) - (a.K + a.N + a.C + a.M));
+    });
+    var out = [A.BAR, '[' + A.md(date) + ' 조간] 휴머노이드·피지컬 AI 주요동향', A.BAR];
+    /* 빈 섹션은 내보내지 않고, 워치리스트도 발송본에 넣지 않는다 (2026-08-31 지시).
+       newsletter.py 와 글자 단위로 같아야 하므로 두 곳을 반드시 같이 고친다.
+       워치리스트는 없어진 것이 아니라 A.watchList() 가 그리는 관리용 패널로 옮겼다. */
+    A.SECTIONS.forEach(function (name, idx) {
+      var i = idx + 1;
+      var items = picked.filter(function (c) { return c.sec === i; });
+      if (items.length) {
+        out.push('');
+        out.push('◆ ' + name + ' (' + items[0].hl + ')');
+        items.forEach(function (c) { out.push('▷ ' + c.t + '… ' + c.body + ' (' + c.src + ')'); });
+      }
+      /* ※ picked.world 집계 줄도 발송본에서 뺐다 — 우리 작업 기록이라
+         pool.html 의 필터 결과 패널에만 둔다. newsletter.py 와 같이 고칠 것. */
+    });
+    out.push('');
+    out.push(A.BAR);
+    out.push('picked.world ' + (meta.pw || 0) + '건 + 자체수집 ' + (meta.own || 0) + '건 = 후보 '
+      + cands.length + '건 중 ' + picked.length + '건 승인');
+    out.push((A.config && A.config.publisher) || '(발행처 미정)');
+    out.push(A.BAR);
+    return out.join('\n');
+  };
+
+  /* 워치리스트 — 발송본에서 빠진 뒤 이 패널이 유일한 노출 지점이다.
+     '인용 금지'·'원문 미확보' 같은 내부 메모라 관리용 화면에만 그린다. */
+  A.watchList = function (opens) {
+    var w = (opens || []).filter(function (o) { return o.watch && o.st !== '해소'; });
+    w.sort(function (a, b) {
+      var x = a.due || '￿', y = b.due || '￿';
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
+    if (!w.length) { return '<p class="muted">워치리스트 항목 없음.</p>'; }
+    return '<ul class="watch">' + w.map(function (o) {
+      var d = o.dd || '상시';
+      return '<li><span class="dd ' + (o.cls || '') + '">' + A.esc(d) + '</span> '
+        + A.esc(o.wt || o.q) + '</li>';
+    }).join('') + '</ul>';
+  };
+
+  /* 발표일·원문 표기. 검색엔진이 몇 달 지난 자료를 오늘 것처럼 올려 주므로
+     담당자가 승인 전에 날짜를 눈으로 확인할 수 있어야 한다.
+     pd 가 비어 있으면 그 사실을 감추지 말고 '발표일 미확인' 으로 드러낸다. */
+  A.pubMeta = function (x) {
+    var s = '';
+    if (x.pd) {
+      s += '<span class="pd">발표 ' + A.esc(A.md(x.pd)) + '</span>';
+    } else {
+      s += '<span class="pd warn">발표일 미확인</span>';
+    }
+    if (x.url) {
+      s += ' <a class="src-link" href="' + A.esc(x.url) + '" target="_blank" rel="noopener">원문</a>';
+    }
+    return s;
+  };
+
+  /* 클립보드. file:// 나 비 HTTPS 에서는 API 가 막힌다.
+     실패를 삼키지 말고 텍스트를 선택 상태로 만들어 직접 복사하게 한다. */
+  A.copy = function (el, msgEl) {
+    var txt = el.textContent;
+    var done = function (m) {
+      if (msgEl) { msgEl.textContent = m; setTimeout(function () { msgEl.textContent = ''; }, 4000); }
+    };
+    var fallback = function () {
+      try {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        done('자동 복사가 막혀 있습니다. 선택된 영역을 Ctrl+C 로 복사하세요.');
+      } catch (e) { done('복사에 실패했습니다. 텍스트를 직접 선택해 주세요.'); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt)
+        .then(function () { done('복사했습니다. 카톡에 붙여넣으세요.'); })
+        .catch(fallback);
+    } else { fallback(); }
+  };
+
+  /* 공통 머리·꼬리. 페이지마다 같은 마크업을 복사하지 않게 한다. */
+  A.header = function (opts) {
+    var c = A.config || {};
+    var nav = (opts.nav || []).map(function (it) {
+      var cur = it.href === opts.here ? ' aria-current="page"' : '';
+      return '<a href="' + it.href + '"' + cur + '><span class="n">' + it.n + '</span>' + it.label + '</a>';
+    }).join('');
+    return '<div class="top">'
+      + '<div class="grow">'
+      + '<p class="eyebrow">' + A.esc(c.publisher || '(발행처 미정)')
+      + ' · ' + A.esc(c.audience || '과기정통부 인공지능혁신과') + '</p>'
+      + '<h1>' + A.esc(opts.title) + '</h1>'
+      + '<p class="subline">' + A.esc(opts.sub || '') + '</p>'
+      + '</div>'
+      + '<div style="display:flex;gap:8px;align-items:center">'
+      + (opts.internal ? '<span class="internal-badge">내부용</span>' : '')
+      + '<button class="themetog" id="themetog" type="button">시스템</button>'
+      + '</div></div>'
+      + '<nav class="tabs">' + nav + '</nav>';
+  };
+
+  A.footer = function (extra) {
+    var c = A.config || {};
+    return (c.publisher || '(발행처 미정)') + ' · ' + (c.title || '휴머노이드 데일리') + ' · '
+      + (extra || '데이터는 .js 전역 할당 — 갱신 시 배열만 교체한다');
+  };
+
+  A.PUBLIC_NAV = [
+    { n: '01', label: '홈', href: 'index.html' },
+    { n: '02', label: '아카이브', href: 'archive.html' },
+    { n: '03', label: '리포트', href: 'reports.html' },
+    { n: '04', label: '체계 소개', href: 'about.html' }
+  ];
+  A.INTERNAL_NAV = [
+    { n: '00', label: '내부 홈', href: 'index.html' },
+    { n: '01', label: '후보풀·승인', href: 'pool.html' },
+    { n: '02', label: '레퍼런스', href: 'shelf.html' },
+    { n: '03', label: '미확정(OPEN)', href: 'open.html' },
+    { n: '04', label: '스레드', href: 'threads.html' },
+    { n: '05', label: '이슈 도출', href: 'issues.html' },
+    { n: '06', label: '리포트 파이프라인', href: 'pipeline.html' },
+    { n: '07', label: '체계도', href: 'system.html' }
+  ];
+
+  /* 페이지 뼈대를 한 번에 그린다. 각 페이지는 render() 만 채우면 된다. */
+  A.page = function (opts, render) {
+    document.addEventListener('DOMContentLoaded', function () {
+      var wrap = A.$('#app');
+      wrap.insertAdjacentHTML('afterbegin', A.header(opts));
+      A.initTheme();
+      try {
+        render(A.$('#body'));
+      } catch (e) {
+        A.$('#body').innerHTML = '<div class="note warn"><span class="lbl">렌더 오류</span>'
+          + A.esc(e.message) + '<br>데이터 파일을 확인하라 — <code>python scripts/check.py --root .</code></div>';
+        throw e;
+      }
+      var f = A.$('#foot');
+      if (f) f.textContent = A.footer(opts.footNote);
+    });
+  };
+})(window.HMD);
+
+</script>
+
+<script>
+window.HMD = window.HMD || {};
+/* 배포본 — 공유 가능한 필드만 담았다. 원본은 site/data/ 에 있다. */
+window.HMD.config = {"publisher": "국가AI+S&T정책연구센터", "audience": "과기정통부 과학기술인공지능혁신과", "title": "Humanoid Daily", "publishAt": "평일 08:30"};
+window.HMD.editions = [{"date": "2026-09-03", "items": [{"sec": 1, "t": "호주 로보틱스 오스트레일리아 그룹과 하우투로봇, 제조기업의 자동화 도입을 지원하는 전국 단위 플랫폼 파트너십 체결", "k": "AutomationFinder.com.au / 국가 단위 라이선스 첫 사례 / 600건 이상 프로젝트 데이터 / 호주 500곳 포함 전 세계 2만 곳 공급업체 / 벤더 중립", "src": "로봇신문 보도 9.2 (양측 발표 9.1)", "pd": "2026-09-01", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48249"}, {"sec": 2, "t": "서울대 기계공학부 윤병동 교수팀, 제조 업무 특화형 파운데이션 모델 'MxFM' 을 개발하는 리더연구 유형A 과제에 선정돼 9년간 수행", "k": "리더연구 유형A / 2026.6부터 9년 / 제조 특화 파운데이션 모델 MxFM / AI-Ready 제조데이터 체계(공정·이벤트·설비·센서·목적 5기준)", "src": "서울대 공대 연구성과 · 로봇신문 보도 9.2", "pd": "2026-09-02", "url": "https://eng.snu.ac.kr/research/research-achievements?md=v&bbsidx=8342"}, {"sec": 3, "t": "TPC로보틱스, 휴머노이드 로봇용 자체 브랜드 액추에이터 7종을 출시하고 국내외 제조사 공급을 추진한다고 발표", "k": "액추에이터 7종 — 로터리 3(목·팔꿈치·엉덩이) · 리니어 3(종아리·허벅지·팔꿈치) · 핑거 모듈 1 / 中 HCBOT 기술이전 협력(5월) / 리니어 모터 50억 규모 공급 추진", "src": "아시아경제 보도 9.2 외 2건", "pd": "2026-09-02", "url": "https://www.asiae.co.kr/article/2026090209250245273"}, {"sec": 3, "t": "[분석] 中 베이징 이좡 휴머노이드 생태계, 부품 2시간 대응·48시간 납품 체계를 갖췄다고 中国电子报가 보도하고 로봇신문이 인용 보도", "k": "부품 2시간 대응·48시간 납품 체계 / 베이징 이좡 생태계", "src": "中国电子报 8.14 · 로봇신문 보도 9.1", "pd": "2026-09-01", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48196"}, {"sec": 3, "t": "원익로보틱스, 5지·20자유도 다관절 로봇핸드 '알레그로 핸드 V6 F' 를 출시하고 손 전체 압력 센싱을 적용", "k": "알레그로 핸드 V6 F / 5지 20자유도 / 전작 대비 크기 20% 축소 / 손끝·관절·손바닥 압력센싱 / 국민성장펀드 1,500억+민간 2,000억으로 완주 공장·AX센터", "src": "AI타임스 보도 9.2 외 4건", "pd": "2026-09-02", "url": "https://www.aitimes.com/news/articleView.html?idxno=214758"}, {"sec": 4, "t": "日 오사카메트로·KDDI·AVITA, 8월 31일부터 9월 15일까지 우메다·다니마치9초메역에서 제미나이 탑재 휴머노이드 역무원 실증", "k": "8.31~9.6 우메다 · 9.9~9.15 다니마치9초메 / 매일 11~20시 / 제미나이 탑재 / 3사 역할분담(오사카메트로 검증·KDDI 인프라·AVITA 개발)", "src": "오사카메트로·KDDI·AVITA 공동 보도자료 8.28 · 로봇신문 보도 9.1", "pd": "2026-08-28", "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1132_4683.html"}, {"sec": 4, "t": "中 갤봇, 홍콩 3곳에 바퀴형 휴머노이드 무인편의점 개설", "k": "홍콩 3곳 무인편의점 / 바퀴형 휴머노이드 / 투입 대수·자율 수준 미공개", "src": "로봇신문 보도 9.1", "pd": "2026-09-01", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48235"}, {"sec": 5, "t": "中 연간 판매 100만 대 이상 완성차 그룹 10곳이 모두 로봇 산업에 진입했다고 랩스딥리포트 2분기 보고서가 분석", "k": "연간 100만 대 이상 완성차 10곳 전부 로봇 진입 / 中 자동차 시장의 83.9% / 체리·GAC 완제품 공개, BYD 자체개발 공식화 / SAIC-애지봇 로봇을 배터리 양산라인 투입", "src": "전자신문 보도 9.2 (랩스딥리포트 2분기 보고서 인용)", "pd": "2026-09-02", "url": "https://www.etnews.com/20260902000231"}, {"sec": 5, "t": "파이낸셜타임스, 中 로봇 산업의 실질 성장은 휴머노이드 시연이 아니라 특정 작업에 최적화된 산업용·서비스 로봇에서 나온다고 분석", "k": "IFR 기준 2024년 中 산업용 로봇 신규 설치 29.5만 대(세계 54%) / 가동 200만 대 초과 / 로봇산업 매출 3,000억 위안 / 2025년 수출 +49%로 첫 순수출국", "src": "FT 오피니언(유료) · 로봇신문 보도 9.2", "pd": "2026-09-02", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48258"}, {"sec": 7, "t": "유진투자증권, 2027년 정부 예산안 분석에서 로봇 지원이 R&D 중심에서 구매·실증·양산 지원으로 확대됐다고 진단", "k": "산업부 지능형로봇 보급 807억(+42.3%) · M.AX 자율제조 1,193억(휴머노이드 200대 실증 300억) · 제조데이터 라이브러리 450억 / 과기정통부 피지컬AI 트레이닝센터 400억 · 핵심기술 550억 · NEXT 휴머노이드 챌린지 175억", "src": "유진투자증권 보고서 9.2 · 로봇신문 보도 9.2", "pd": "2026-09-02", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48255"}, {"sec": 7, "t": "NC AI, LG전자와 컨소시엄을 구성해 산업통상부·KEIT 「K-온디바이스 AI반도체 기술개발 사업」 휴머노이드 분야 수행기관으로 선정", "k": "K-온디바이스 AI반도체 기술개발 사업 휴머노이드 분야 / NC AI·LG전자 컨소시엄 / 휴먼-로봇 리타게팅 파이프라인 / 디지털 트윈 기반 모션 데이터셋 구축", "src": "디지털데일리·조선비즈·파이낸셜뉴스 보도 9.3", "pd": "2026-09-03", "url": "https://www.ddaily.co.kr/page/view/2026090311425866057"}, {"sec": 7, "t": "하이젠알앤엠, 로봇산업핵심기술개발 '고중량 작업용 휴머노이드' 과제 주관기관 선정", "k": "고중량 작업용 휴머노이드 국가과제 / 41개월 81억 원 / 주관기관 하이젠알앤엠", "src": "로봇신문 보도 9.1", "pd": "2026-09-01", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48222"}, {"sec": 7, "t": "전북대학교, 산업통상부 「2026년도 첨단산업 특성화대학원 지원사업」 로봇 분야에 선정돼 5년간 국비 150억 원을 지원받는다고 로봇신문이 보도", "k": "첨단산업 특성화대학원 로봇 분야 선정 / 5년 150억 원 / 매년 45명·석박사 120명 목표 / 비수도권 22곳 신청, 6개 대학원 선정(로봇은 전북대·경북대)", "src": "전북대 발표 · 로봇신문 보도 9.2", "pd": "2026-09-02", "url": "https://www.irobotnews.com/news/articleView.html?idxno=48265"}, {"sec": 8, "t": "中 베이징대 연구팀, 학습에 없던 로봇 몸체로 옮겼을 때 시각-언어-행동(VLA) 모델의 무학습 일반화를 모델당 6,300 롤아웃으로 통제 비교한 연구를 공개", "k": "몸체 변화 단계별 통제 비교(외형만·그리퍼) / 모델당 6,300 롤아웃 / 무학습 일반화 / 미동료심사", "src": "베이징대 등 arXiv 9.2 (미동료심사)", "pd": "2026-09-02", "url": "https://arxiv.org/abs/2609.02546"}, {"sec": 8, "t": "한양대 연구팀, 점군 대응을 학습해 사람 동작을 휴머노이드로 옮기는 통합 리타게팅 기법을 제시하고 LAFAN1 데이터셋에서 4,096 시행으로 평가", "k": "점군 대응 학습 기반 통합 리타게팅 / LAFAN1 데이터셋 / 4,096 시행 / 실기 배치 결과 포함 / 미동료심사", "src": "한양대 arXiv 9.2 (미동료심사)", "pd": "2026-09-02", "url": "https://arxiv.org/abs/2609.02134"}, {"sec": 8, "t": "中 베이징우전대 연구팀, 월드모델을 붙인 휴머노이드 시각보행을 유니트리 G1 실기에 올려 디딤돌·계단·틈 지형에서 평균 성공률 93.3%를 보고", "k": "유니트리 G1 실기 배치 / 디딤돌·계단·틈 지형 / 조합당 50 에피소드 / 평균 성공률 93.3% / 단일 깊이 스트림 / 미동료심사", "src": "베이징우전대 등 arXiv 9.2 (미동료심사)", "pd": "2026-09-02", "url": "https://arxiv.org/abs/2609.02542"}, {"sec": 8, "t": "中 우한대 연구팀, 발 접촉을 이진 판정 대신 신뢰도로 다루는 휴머노이드 고유수용 오도메트리 FOCUS 를 제시", "k": "발 접촉을 이진 판정 대신 신뢰도로 / 시뮬레이션 보행 20 에피소드 비교 / 오차 미터 단위·표류율 / 미동료심사", "src": "우한대 arXiv 9.2 (미동료심사)", "pd": "2026-09-02", "url": "https://arxiv.org/abs/2609.02222"}]}];
+
+</script>
+<script>
+(function (A) {
+  var cfg = A.config || {};
+
+  /* 공유용에는 '확인된 결과'만 싣는다. 부재 확인(…없음·미개설)과 미확인 수치를 담은
+     항목은 적재 때 pub:false 로 표시되며 여기서 걸러진다. 그 기록이 사라지는 것은
+     아니다 — 내부 화면과 카톡 발송본이 계속 진다. */
+  var eds = (A.editions || []).map(function (e) {
+    var o = {}; for (var k in e) { o[k] = e[k]; }
+    o.items = (e.items || []).filter(function (x) { return x.pub !== false; });
+    return o;
+  }).filter(function (e) { return e.items.length; });
+
+  /* 공유용은 두 탭뿐이다 — 오늘 호와 아카이브. 링크 이동 없이 한 파일에서 전환한다. */
+  var TABS = [
+    { id: 'now',  n: '01', label: '뉴스레터' },
+    { id: 'arch', n: '02', label: '아카이브' }
+  ];
+
+  /* 항목 하나를 사실 단위로 그린다.
+     제목 = 주체와 사실 / 아래 줄 = 수치·기한 / 끝 = 발표일·출처·원문 링크.
+     해석과 판단근거(韓 연계)는 여기 싣지 않는다 — 내부 화면이 진다. */
+  function fact(x, q) {
+    var body = x.k || x.body || '';
+    var h = '<div class="fact">'
+      + '<div class="ft">' + mark(x.t, q) + '</div>'
+      + (body ? '<div class="fk">' + mark(body, q) + '</div>' : '')
+      + '<div class="fm">' + A.pubMeta(x);
+    if (x.src) { h += '<span class="chip">' + A.esc(x.src) + '</span>'; }
+    if (x.grade) { h += '<span class="chip a">' + A.esc(x.grade) + '</span>'; }
+    if (x.date) { h += '<span class="chip">' + A.esc(A.fmtDate(x.date)) + ' 발행</span>'; }
+    return h + '</div></div>';
+  }
+
+  function mark(s, q) {
+    var e = A.esc(s || '');
+    if (!q) return e;
+    try {
+      return e.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'),
+                       '<mark>$1</mark>');
+    } catch (err) { return e; }
+  }
+
+  A.page({
+    title: '휴머노이드 데일리',
+    sub: (cfg.audience || '과기정통부 인공지능혁신과') + ' · ' + (cfg.publishAt || '평일 08:30'),
+    nav: [], here: '',
+    footNote: '확인된 사실과 원문만 싣습니다'
+  }, function (root) {
+    if (!eds.length) {
+      root.innerHTML = '<div class="note warn"><span class="lbl">발행분 없음</span>'
+        + 'data/editions.js 가 비어 있습니다.</div>';
+      return;
+    }
+
+    var h = '<nav class="tabs">' + TABS.map(function (t, i) {
+      return '<button type="button" data-tab="' + t.id + '"'
+        + (i === 0 ? ' aria-current="page"' : '')
+        + '><span class="n">' + t.n + '</span>' + t.label + '</button>';
+    }).join('') + '</nav>';
+
+    h += '<div class="pane" id="p-now"></div>';
+    h += '<div class="pane" id="p-arch" hidden></div>';
+    root.innerHTML = h;
+
+    A.$$('nav.tabs button', root).forEach(function (b) {
+      b.addEventListener('click', function () {
+        A.$$('nav.tabs button', root).forEach(function (o) { o.removeAttribute('aria-current'); });
+        b.setAttribute('aria-current', 'page');
+        A.$('#p-now').hidden = b.dataset.tab !== 'now';
+        A.$('#p-arch').hidden = b.dataset.tab !== 'arch';
+      });
+    });
+
+    renderNow(A.$('#p-now'));
+    renderArch(A.$('#p-arch'));
+  });
+
+  /* ── 탭 1. 뉴스레터 — 오늘 호를 섹션별로.
+     호 이동은 주소 질의문(?d=)이 아니라 화면 안 상태로 한다. 파일 하나로 배포했을 때
+     file:// + 질의문이 뷰어에 따라 안 열리는 일이 있어서다. */
+  var pick = null;
+  function renderNow(root) {
+    var d = pick || A.qs('d');
+    var i = d ? Math.max(0, eds.map(function (e) { return e.date; }).indexOf(d)) : 0;
+    var ed = eds[i], prev = eds[i + 1], next = eds[i - 1];
+
+    var h = '<div class="toolbar">'
+      + '<span class="count"><b>' + A.fmtDate(ed.date) + '</b> 조간</span>'
+      + (next ? '<button class="act ghost" type="button" data-go="' + A.esc(next.date) + '">← 다음 호</button>' : '')
+      + (prev ? '<button class="act ghost" type="button" data-go="' + A.esc(prev.date) + '">이전 호 →</button>' : '')
+      + '<span class="count">항목 <b>' + ed.items.length + '</b>건</span>'
+      + (ed.text ? '<button class="act" id="copyBtn" type="button">전문 복사</button>' : '')
+      + '<span class="src" id="copyMsg"></span></div>';
+
+    A.SECTIONS.forEach(function (name, si) {
+      var its = (ed.items || []).filter(function (x) { return x.sec === si + 1; });
+      if (!its.length) return;          // 없는 섹션은 내보내지 않는다
+      h += '<div class="secblk" data-sec="' + (si + 1) + '"><h3>' + A.esc(name) + '</h3>';
+      its.forEach(function (x) { h += fact(x, ''); });
+      h += '</div>';
+    });
+
+    /* picked.world 집계와 수집 창은 우리 작업 기록이다. 공유용에는 싣지 않는다.
+       둘 다 내부 후보풀 화면이 패널로 계속 보여 준다.
+       (이 파일에는 내부 경로를 문자열로도 적지 않는다 — check.py 가 잡는다) */
+
+    /* 카톡 전문은 사내 원본에서만 보인다. 배포본(bundle.py)은 이 텍스트를
+       아예 담지 않으므로 칸도 만들지 않는다. */
+    if (ed.text) {
+      h += '<details class="raw"><summary>카카오톡 발송 전문 보기</summary>'
+        + '<pre id="rawText">' + A.esc(ed.text) + '</pre></details>';
+    }
+
+    root.innerHTML = h;
+    A.$$('button[data-go]', root).forEach(function (g) {
+      g.addEventListener('click', function () { pick = g.dataset.go; renderNow(root); });
+    });
+    var b = document.getElementById('copyBtn');
+    if (b) b.addEventListener('click', function () {
+      A.copy(document.getElementById('rawText'), document.getElementById('copyMsg'));
+    });
+  }
+
+  /* ── 탭 2. 아카이브 — 전체 항목을 검색 */
+  function renderArch(root) {
+    var items = [];
+    eds.forEach(function (e) {
+      (e.items || []).forEach(function (x) {
+        items.push({ date: e.date, sec: x.sec, t: x.t, k: x.k || '', body: x.body || '',
+                     src: x.src || '', grade: x.grade || '', pd: x.pd || '', url: x.url || '' });
+      });
+    });
+
+    var h = '<div class="filters">'
+      + '<input type="search" id="q" placeholder="검색어" size="22">'
+      + '<select id="sec"><option value="0">전체 섹션</option>'
+      + A.SECTIONS.map(function (s, i) {
+          return '<option value="' + (i + 1) + '">' + A.esc(s) + '</option>';
+        }).join('') + '</select>'
+      + '<input type="text" id="from" placeholder="부터 YYYY-MM-DD" size="14">'
+      + '<input type="text" id="to" placeholder="까지 YYYY-MM-DD" size="14">'
+      + '</div>'
+      + '<p class="dek">발행 ' + eds.length + '호 · 항목 <b id="cnt">' + items.length + '</b>건</p>'
+      + '<div id="list"></div>';
+    root.innerHTML = h;
+
+    ['q', 'sec', 'from', 'to'].forEach(function (id) {
+      var el = document.getElementById(id);
+      el.addEventListener(id === 'sec' ? 'change' : 'input', draw);
+    });
+    draw();
+
+    function draw() {
+      var q = document.getElementById('q').value.trim();
+      var sec = +document.getElementById('sec').value;
+      var f = document.getElementById('from').value.trim();
+      var t2 = document.getElementById('to').value.trim();
+      var lq = q.toLowerCase();
+      var out = items.filter(function (x) {
+        if (sec && x.sec !== sec) return false;
+        if (f && x.date < f) return false;
+        if (t2 && x.date > t2) return false;
+        if (lq && (x.t + ' ' + x.k + ' ' + x.body + ' ' + x.src).toLowerCase().indexOf(lq) < 0) return false;
+        return true;
+      });
+      out.sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : a.sec - b.sec; });
+      document.getElementById('cnt').textContent = out.length;
+
+      if (!out.length) {
+        document.getElementById('list').innerHTML =
+          '<div class="note"><span class="lbl">결과 없음</span>검색어를 줄이거나 기간을 넓혀 보세요.</div>';
+        return;
+      }
+      var cur = -1, h2 = '';
+      out.forEach(function (x) {
+        if (x.sec !== cur) {
+          if (cur !== -1) h2 += '</div>';
+          cur = x.sec;
+          h2 += '<div class="secblk" data-sec="' + x.sec + '"><h3>'
+            + A.esc(A.SECTIONS[x.sec - 1] || '') + '</h3>';
+        }
+        h2 += fact(x, q);
+      });
+      document.getElementById('list').innerHTML = h2 + '</div>';
+    }
+  }
+})(window.HMD);
+</script>
+</body>
+</html>
