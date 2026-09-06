@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| 공개 주소 | `https://kist-aix.github.io/Humanoid-Newsletter/` |
+| 공개 주소 | **https://humanoids.day/** — 그 주소를 서비스하는 것은 `lheajin7/Humanoid-Newsletter` 다 |
 | 현재 실린 호 | **2026-09-04** |
 
 ## 이 저장소에 있는 것
@@ -63,7 +63,11 @@ python <스킬>/scripts/bundle.py --root <작업폴더>/site \
 `share/web/index.html`(이 저장소) **셋은 한 세트**이며, 하나만 갱신하면
 받는 사람이 보는 것과 우리가 가진 것이 갈라진다.
 
-## Pages 설정
+## 이 저장소의 위치 — 기관 사본이다
 
-Settings → Pages → Source 를 **Deploy from a branch · `main` · `/ (root)`** 로 둔다.
-도메인을 붙이려면 `CNAME` 파일을 루트에 하나 더 만든다.
+**도메인을 서비스하는 것은 여기가 아니다.** `humanoids.day` 는
+`lheajin7/Humanoid-Newsletter` 에 붙어 있고(그쪽 루트의 `CNAME`), 이 저장소는
+기관 보관용 사본이다. 둘은 같은 파일을 갖는다.
+
+여기에 `CNAME` 을 넣지 마라 — 한 도메인은 Pages 사이트 하나만 잡을 수 있어
+두 저장소가 같은 주소를 주장하면 먼저 잡은 쪽이 끊긴다.
