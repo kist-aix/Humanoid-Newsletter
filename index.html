@@ -11,7 +11,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Humanoid Daily 2026-09-15</title>
-<!-- 자립형 배포본 · 2026-09-15 08:05 생성 · 더블클릭하면 열립니다 -->
+<!-- 자립형 배포본 · 2026-09-15 08:11 생성 · 더블클릭하면 열립니다 -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -843,6 +843,17 @@ window.HMD = window.HMD || {};
     };
     /* **세 청소를 더 줄어들지 않을 때까지 돌린다.** 한 번만 돌리면 괄호를 떼고 드러난
        날짜(「AI타임스 9.3 (라온피플 발표)」)나 유형 표기(「FT 오피니언(유료)」)가 남는다. */
+    /* **중복이 생기는 자리에서만 쓰는 이름.** 괄호·머리표시·나라표시만 떼고
+       유형 표기(보도자료·프레스룸…)는 남긴다 — 한 주체가 낸 두 문서를 갈라 보여야
+       할 때 쓴다. 평소에는 clean() 이 이긴다. */
+    var label = function (t) {
+      return String(t || '')
+        .replace(/^\s*\[[^\]]*\]\s*/, '')
+        .replace(/^[^,]*\s외,\s*/, '')
+        .replace(/\s*\([^)]*\)\s*/g, ' ')
+        .replace(/^(?:美|中|日|歐|英|獨|佛|韓|EU)\s+/, '')
+        .replace(/\s+/g, ' ').trim();
+    };
     var clean = function (t) {
       var out = String(t || ''), prev;
       for (var i = 0; i < 4; i++) {
@@ -865,23 +876,39 @@ window.HMD = window.HMD || {};
     var urls = [x.url || '', x.url2 || '', x.url3 || '', x.url4 || ''];
     var pieces = raw.split('·').map(function (part, n) {
       var bare = undate(part);
-      return { text: clean(part), url: urls[n] || '',
+      return { text: clean(part), show: '', raw: part, url: urls[n] || '',
                origin: ORIGINMARK.test(bare) ? 1 : 0, at: n };
     }).filter(function (q) { return q.text; });
     pieces.sort(function (a, b) { return (a.origin - b.origin) || (a.at - b.at); });
     /* **같은 이름이 두 번 서지 않게 한다.** 「벤션 보도자료 · 벤션 프레스룸」처럼 한
        주체가 두 문서를 낸 자리가 있는데, 이름만 남기면 둘이 같은 글자가 된다.
        먼저 온 것을 남기되 링크가 없던 자리는 뒤에 온 링크로 채운다. */
-    var uniq = [], idx = {};
+    /* **같은 이름이 된 조각은 하나만 세운다** (2026-09-15 지시).
+       「벤션 보도자료 · 벤션 프레스룸」처럼 한 주체가 낸 두 문서는 이름만 남기면
+       둘 다 '벤션'이 되어 같은 글자가 두 번 선다. 같은 내용이므로 **하나만** 두되,
+       그 하나는 **구분되는 이름**(「벤션 보도자료」)으로 적는다 — 이름만 남기면
+       어느 문서를 열게 되는지 알 수 없기 때문이다.
+       남기는 것은 **먼저 온 조각**이고, 링크도 그 자리를 쓴다. */
+    var count = {}, uniq = [], idx = {};
+    pieces.forEach(function (q) { count[q.text] = (count[q.text] || 0) + 1; });
     pieces.forEach(function (q) {
-      if (idx[q.text] === undefined) { idx[q.text] = uniq.length; uniq.push(q); }
-      else if (!uniq[idx[q.text]].url) { uniq[idx[q.text]].url = q.url; }
+      if (idx[q.text] !== undefined) {
+        if (!uniq[idx[q.text]].url) { uniq[idx[q.text]].url = q.url; }
+        return;
+      }
+      idx[q.text] = uniq.length;
+      if (count[q.text] > 1) {
+        var full = label(undate(q.raw));
+        if (full && full.length > q.text.length) { q.show = full; }
+      }
+      uniq.push(q);
     });
     pieces = uniq;
     return pieces.map(function (q) {
-      if (!q.url) { return A.esc(q.text); }
+      var t = q.show || q.text;
+      if (!q.url) { return A.esc(t); }
       return '<a class="src-link" href="' + A.esc(q.url) + '" target="_blank" rel="noopener">'
-        + A.esc(q.text) + '</a>'
+        + A.esc(t) + '</a>'
         + (A.isPaywalled && A.isPaywalled(q.url) ? ' <span class="paywall">유료</span>' : '');
     }).join(' · ');
   };
