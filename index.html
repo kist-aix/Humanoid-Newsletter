@@ -11,7 +11,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Humanoid Daily 2026-09-15</title>
-<!-- 자립형 배포본 · 2026-09-15 07:26 생성 · 더블클릭하면 열립니다 -->
+<!-- 자립형 배포본 · 2026-09-15 08:05 생성 · 더블클릭하면 열립니다 -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -808,7 +808,7 @@ window.HMD = window.HMD || {};
        에서 끊긴다. 남은 글자가 홀로 설 수 없는 꾸밈말이면 떼기 전으로 되돌린다. */
     var DANGLING = /(?:^|\s)(공동|합동|공식|영문|국문|자체|관련|공저)$/;
     var untype = function (t) {
-      var out = String(t || '').trim(), re = new RegExp('\s+(?:' + TYPEWORDS + ')$');
+      var out = String(t || '').trim(), re = new RegExp('\\s+(?:' + TYPEWORDS + ')$');
       for (var i = 0; i < 3; i++) {
         if (!re.test(out)) { break; }
         var cut = out.replace(re, '').trim();
@@ -817,16 +817,72 @@ window.HMD = window.HMD || {};
       }
       return out;
     };
-    /* `src` 의 조각과 url·url2·url3·url4 를 **자리 순서로** 잇는다 (휴머노이드 모형).
-       링크가 없는 조각은 그냥 글자로 남는다 — 눌리지 않는 것도 정보다.
-       유료 지면이면 [유료] 를 붙인다: 누르기 전에 알 수 있어야 한다. */
+    /* **이름만 남긴다** (2026-09-15 지시). 유형 표기를 뗀 뒤에도 「샤파 공식 페이지」·
+       「IEC 표준정보 직접 확인」·「오사카메트로 … AVITA 공동」처럼 서술이 붙은 자리가
+       남는다. 출처 칸에 설 것은 **기관·매체의 이름 하나**이므로 괄호와 서술 꼬리,
+       앞에 붙은 나라 표시를 뗀다. 여러 낱말로 된 고유명사(24/7 Wall St. · 사이언스
+       로보틱스)는 그것이 곧 이름이므로 쪼개지 않는다. */
+    var TAILWORDS = '공식 페이지|공식페이지|홈페이지|프레스룸|뉴스룸|웹사이트|사이트|페이지'
+                  + '|표준정보 직접 확인|직접 확인|연구성과|공동|합동|공식|팀|연구팀'
+                  + '|외 \\d+건|등 \\d+건|외|등';
+    var unqualify = function (t) {
+      var out = String(t || '')
+        .replace(/^\s*\[[^\]]*\]\s*/, '')             /* 머리의 [강연]·[분석] 표시 */
+        .replace(/^[^,]*\s외,\s*/, '')                  /* 「Hongjin Chen 외, CoRL 2026」 */
+        .replace(/\s*\([^)]*\)\s*/g, ' ')              /* (ETH Zürich)·(유료) 같은 괄호 */
+        .replace(/^(?:美|中|日|歐|英|獨|佛|韓|EU)\s+/, '')  /* 「美 로보커브」의 나라 표시 */
+        .replace(/\s+/g, ' ').trim();
+      var re = new RegExp('\\s+(?:' + TAILWORDS + ')$');
+      for (var i = 0; i < 3; i++) {
+        if (!re.test(out)) { break; }
+        var cut = out.replace(re, '').trim();
+        if (cut.length < 2 || DANGLING.test(cut)) { break; }
+        out = cut;
+      }
+      return out.replace(/[,·]\s*$/, '').trim();
+    };
+    /* **세 청소를 더 줄어들지 않을 때까지 돌린다.** 한 번만 돌리면 괄호를 떼고 드러난
+       날짜(「AI타임스 9.3 (라온피플 발표)」)나 유형 표기(「FT 오피니언(유료)」)가 남는다. */
+    var clean = function (t) {
+      var out = String(t || ''), prev;
+      for (var i = 0; i < 4; i++) {
+        prev = out;
+        out = untype(unqualify(undate(out)));
+        if (out === prev) { break; }
+      }
+      return out;
+    };
+    /* **일간지를 앞에, 원문을 뒤에 둔다** (2026-09-15 지시로 화면 순서를 뒤집었다).
+       `src` 의 데이터 순서는 종전대로 「원문 · 보도」다(출처는 원문이 먼저라는 원칙이고,
+       카톡 발송본이 그 순서를 그대로 쓴다). 화면에서만 뒤집는다 — 읽는 사람은 기사를
+       먼저 만나고 그 근거를 뒤에 확인하기 때문이다.
+       **조각과 링크를 짝지어 함께 옮긴다.** 조각만 옮기면 url·url2 가 자리로 이어지는
+       모형이라 링크가 한 칸씩 밀려 엉뚱한 글자에 붙는다.
+       원문인지는 **떼기 전 원본 조각**으로 가른다 — 발표·논문·공고 같은 표기가 곧
+       「기관이 낸 문서」라는 표시이고, 화면에서는 그 낱말을 지우기 때문이다. */
+    var ORIGINMARK = new RegExp('(?:^|\\s)(?:' + TYPEWORDS
+      + '|공지|공식|페이지|프레스룸|뉴스룸|사이트|확인|연구성과)(?:\\s|$)');
     var urls = [x.url || '', x.url2 || '', x.url3 || '', x.url4 || ''];
-    return raw.split('·').map(function (part, n) {
-      var t = untype(undate(part)), u = urls[n] || '';
-      if (!u) { return A.esc(t); }
-      return '<a class="src-link" href="' + A.esc(u) + '" target="_blank" rel="noopener">'
-        + A.esc(t) + '</a>'
-        + (A.isPaywalled && A.isPaywalled(u) ? ' <span class="paywall">유료</span>' : '');
+    var pieces = raw.split('·').map(function (part, n) {
+      var bare = undate(part);
+      return { text: clean(part), url: urls[n] || '',
+               origin: ORIGINMARK.test(bare) ? 1 : 0, at: n };
+    }).filter(function (q) { return q.text; });
+    pieces.sort(function (a, b) { return (a.origin - b.origin) || (a.at - b.at); });
+    /* **같은 이름이 두 번 서지 않게 한다.** 「벤션 보도자료 · 벤션 프레스룸」처럼 한
+       주체가 두 문서를 낸 자리가 있는데, 이름만 남기면 둘이 같은 글자가 된다.
+       먼저 온 것을 남기되 링크가 없던 자리는 뒤에 온 링크로 채운다. */
+    var uniq = [], idx = {};
+    pieces.forEach(function (q) {
+      if (idx[q.text] === undefined) { idx[q.text] = uniq.length; uniq.push(q); }
+      else if (!uniq[idx[q.text]].url) { uniq[idx[q.text]].url = q.url; }
+    });
+    pieces = uniq;
+    return pieces.map(function (q) {
+      if (!q.url) { return A.esc(q.text); }
+      return '<a class="src-link" href="' + A.esc(q.url) + '" target="_blank" rel="noopener">'
+        + A.esc(q.text) + '</a>'
+        + (A.isPaywalled && A.isPaywalled(q.url) ? ' <span class="paywall">유료</span>' : '');
     }).join(' · ');
   };
 
