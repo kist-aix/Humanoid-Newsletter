@@ -7,7 +7,8 @@
 | | |
 |---|---|
 | 공개 주소 | **https://humanoids.day/** |
-| 현재 실린 호 | **2026-09-04** |
+| 현재 실린 호 | 매일 평일 아침 갱신된다 — 지면에서 확인한다 |
+| 저장소 | **`kist-aix/Humanoid-Newsletter`** — 이 저장소가 도메인을 서비스한다 |
 
 ## 이 저장소에 있는 것
 
@@ -67,3 +68,7 @@ python <스킬>/scripts/bundle.py --root <작업폴더>/site \
 
 Settings → Pages → Source 는 **Deploy from a branch · `main` · `/ (root)`**, Custom domain 은 `humanoids.day`.
 루트의 `CNAME` 파일(`humanoids.day`)이 그 설정을 붙든다 — **지우면 도메인이 끊긴다.**
+
+2026-09-16 에 지면을 `lheajin7/Humanoid-Newsletter` 에서 이 저장소로 옮겼다.
+그때까지 발행된 호들의 커밋 이력을 그대로 가져왔다. 옛 저장소는 보관용이며
+**거기에 다시 `CNAME` 을 넣으면 두 저장소가 같은 도메인을 주장해 지면이 흔들린다.**
