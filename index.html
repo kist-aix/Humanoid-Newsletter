@@ -16,7 +16,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Humanoid Daily 2026-11-20</title>
-<!-- 자립형 배포본 · 2026-11-20 11:44 생성 · 더블클릭하면 열립니다 -->
+<!-- 자립형 배포본 · 2026-11-20 14:17 생성 · 더블클릭하면 열립니다 -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -607,16 +607,17 @@ body.pub .top::after{content:"그림 lifearchitect.ai/humanoids · Made Visual";
 .flow .num span{display:block;font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4;word-break:keep-all}
 
 /* 기사 칸 — 칸 전체 링크·대표 이미지 (2026-11-20 지시) */
-a.fact.frow{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:stretch;padding:12px 0 12px 12px;color:inherit;text-decoration:none;cursor:pointer}
+a.fact.frow{display:grid;grid-template-columns:132px 1fr;grid-template-rows:108px;gap:14px;align-items:center;padding:12px 0 12px 12px;color:inherit;text-decoration:none;cursor:pointer}
 a.fact.frow.noimg{grid-template-columns:1fr}
 a.fact.frow:hover .ft{text-decoration:underline}
-.fthumb{display:block;width:132px;min-height:99px;height:100%;border-radius:6px;overflow:hidden;background:var(--surface2);border:1px solid var(--line2)}
+.fthumb{display:block;width:132px;height:108px;border-radius:6px;overflow:hidden;background:var(--surface2);border:1px solid var(--line2);box-sizing:border-box}
 .fthumb img{width:100%;height:100%;object-fit:cover;display:block}
-.fmain{min-width:0;display:flex;flex-direction:column;gap:6px;justify-content:center}
-.fmain .ft{font-weight:700;font-size:15px;line-height:1.45;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.fmain .fk{font-size:13.5px;line-height:1.6;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.fmain .fm{display:block}
-@media (max-width:380px){a.fact.frow{grid-template-columns:112px 1fr;gap:12px}.fthumb{width:112px;min-height:84px}}
+.fmain{min-width:0;height:108px;overflow:hidden;display:flex;flex-direction:column;gap:4px;justify-content:center}
+.fmain .ft{flex:none;font-weight:700;font-size:14.5px;line-height:1.38;max-height:calc(14.5px*1.38*3);color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fmain .fk{flex:none;font-size:13px;line-height:1.5;max-height:calc(13px*1.5*2);color:var(--ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fmain .fm{display:block;flex:none}
+.fmain:has(.fm) .fk{-webkit-line-clamp:1;max-height:calc(13px*1.5)}
+@media (max-width:380px){a.fact.frow{grid-template-columns:112px 1fr;gap:12px}.fthumb{width:112px}}
 /* 상세요약 핵심 문장 하이라이트 (2026-11-20 지시) */
 mark.hl{background:#FFF1A8;color:inherit;padding:1px 2px;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) mark.hl{background:rgba(255,214,90,.24)}}
